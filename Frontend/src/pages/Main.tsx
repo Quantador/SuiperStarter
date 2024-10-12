@@ -12,6 +12,7 @@ const Home = () => {
 
       <main className="container mx-auto px-4 mt-20">
         <section className="hero bg-base-100 rounded-lg shadow-md mb-8">
+          
           <div className="hero-content text-center  py-12">
             <div className="max-w-md">
               <h1 className="text-5xl font-bold mb-4 text-blue-600">The SUI x BSA Template</h1>
