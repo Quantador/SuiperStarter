@@ -9,6 +9,8 @@ import Main from './pages/Main';
 import NFT from './pages/NFT';
 import Debug from './pages/Debug';
 import Contract from './pages/Contract';
+import Navbar from "./components/Navbar";
+import NewHome from "./pages/Home";
 
 function App() {
   const currentAccount = useCurrentAccount();
@@ -18,14 +20,16 @@ function App() {
   });
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/NFT" element={<NFT />} />
-        <Route path="/Debug" element={<Debug />} />
-        <Route path="/Contract" element={<Contract />} />
-      </Routes>
-    </BrowserRouter>
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<NewHome />} />
+          <Route path="/NFT" element={<NFT />} />
+          <Route path="/Debug" element={<Debug />} />
+          <Route path="/Contract" element={<Contract />} />
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 
