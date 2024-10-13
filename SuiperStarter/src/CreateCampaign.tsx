@@ -95,6 +95,7 @@ export function CreateCampaign({
           if (objectId) {
             onCreated(objectId);
             console.log("Campaign created with id", objectId);
+            window.location.reload(); 
           }
         },
         onError: (error) => {

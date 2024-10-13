@@ -9,7 +9,7 @@ module campaign::campaign {
     objective: u64,
     amount: u64,
     name: String,
-    description: String
+    description: String,
 
   }
 
@@ -20,7 +20,7 @@ module campaign::campaign {
       objective: objective,
       amount: 0,
       name: string::utf8(name_bytes),
-      description: string::utf8(description_bytes)
+      description: string::utf8(description_bytes),
     })
   }
 
