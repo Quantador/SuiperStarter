@@ -1,6 +1,6 @@
 import { ConnectButton, useCurrentAccount } from "@mysten/dapp-kit";
 import { isValidSuiObjectId } from "@mysten/sui/utils";
-import { Box, Container, Flex, Heading } from "@radix-ui/themes";
+import { Box, Container, Flex, Heading, Text } from "@radix-ui/themes";
 import { useState } from "react";
 import { Campaign } from "./Campaign";
 import { CreateCampaign } from "./CreateCampaign";
@@ -18,13 +18,16 @@ function App() {
         position="sticky"
         px="4"
         py="2"
-        justify="between"
+        justify="center"
+        align="center"
+        gap="4"
         style={{
           borderBottom: "1px solid var(--gray-a2)",
         }}
       >
         <Box>
-          <Heading>dApp Starter Template</Heading>
+          <Heading>SuiperStart</Heading>
+          <Text>A transparent and secure crowdfunding platform, empowering users to support causes with confidence on the SUI blockchain.</Text>
         </Box>
 
         <Box>

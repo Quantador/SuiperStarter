@@ -37,15 +37,38 @@ export function Campaign({ id }: { id: string }) {
   // State to store donation amount
   const [donationAmount, setDonationAmount] = useState<number>(0);
 
+  const [transactionCompleted, setTransactionCompleted] = useState(false);
+
+  const [goalReached, setGoalReached] = useState(false);
+
+
   useEffect(() => {
-    // Vérifier si `data?.data` existe avant d'appeler `getCampaignFields`
+    if (transactionCompleted) {
+      refetch(); // Réactualise les données
+      setTransactionCompleted(false); // Réinitialise l'état
+    }
+  }, [transactionCompleted]);  
+
+  useEffect(() => {
+    if (goalReached) {
+      refetch(); // Réactualise les données
+      //setGoalReached(false); // Réinitialise l'état
+      console.log(goalReached)
+      console.log(refetch)
+      setTimeout(() => {
+        alert("Congratulations! The campaign has reached its goal!");
+      }, 500);
+    }
+  }, [goalReached]); 
+
+  useEffect(() => {
     if (data?.data) {
       const fields = getCampaignFields(data.data);
-      if (fields && fields.amount >= parseInt(fields.objective)) {
-        alert("Congratulations! The campaign has reached its goal!");
+      if (fields && fields.amount >= parseInt(fields.objective) && !goalReached) {
+        setGoalReached(true); // Marquer comme atteint
       }
     }
-  }, [data]);
+  }, [data, goalReached]);  
 
   const executeMoveCall = (method: "donate" | "reset") => {
     const tx = new Transaction();
@@ -67,10 +90,16 @@ export function Campaign({ id }: { id: string }) {
         transaction: tx,
       },
       {
-        onSuccess: async () => {
-          await refetch();
+        onSuccess: async (result) => {
+          console.log("Transaction successful:", result);
+          setTransactionCompleted(true); // Déclenche la réactualisation
+          
+          //await refetch(); // Refetch après le succès de la transaction
         },
-      },
+        onError: (error) => {
+          console.error("Transaction failed:", error);
+        },
+      }
     );
   };
 
